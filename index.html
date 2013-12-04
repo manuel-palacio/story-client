@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset='utf-8' />
+    <meta http-equiv="X-UA-Compatible" content="chrome=1" />
+    <meta name="description" content="Story-client : " />
+
+    <link rel="stylesheet" type="text/css" media="screen" href="stylesheets/stylesheet.css">
+
+    <title>Story-client</title>
+  </head>
+
+  <body>
+
+    <!-- HEADER -->
+    <div id="header_wrap" class="outer">
+        <header class="inner">
+          <a id="forkme_banner" href="https://github.com/manuel-palacio/story-client">View on GitHub</a>
+
+          <h1 id="project_title">Story-client</h1>
+          <h2 id="project_tagline"></h2>
+
+            <section id="downloads">
+              <a class="zip_download_link" href="https://github.com/manuel-palacio/story-client/zipball/master">Download this project as a .zip file</a>
+              <a class="tar_download_link" href="https://github.com/manuel-palacio/story-client/tarball/master">Download this project as a tar.gz file</a>
+            </section>
+        </header>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div id="main_content_wrap" class="outer">
+      <section id="main_content" class="inner">
+        <h1>
+<a name="a-lineman-js-template-using-angularjs" class="anchor" href="#a-lineman-js-template-using-angularjs"><span class="octicon octicon-link"></span></a>A Lineman JS Template using AngularJS</h1>
+
+<p>This project can be used as a template for Angular JS applications using <a href="http://www.linemanjs.com">Lineman</a>.</p>
+
+<h1>
+<a name="instructions" class="anchor" href="#instructions"><span class="octicon octicon-link"></span></a>Instructions</h1>
+
+<ol>
+<li><code>git clone https://github.com/manuel-palacio/story-client</code></li>
+<li><code>cd my-lineman-app</code></li>
+<li><code>sudo npm install -g lineman</code></li>
+<li><code>npm install</code></li>
+<li><code>lineman run</code></li>
+<li>open your web browser to localhost:8000</li>
+</ol><h1>
+<a name="running-tests" class="anchor" href="#running-tests"><span class="octicon octicon-link"></span></a>Running Tests</h1>
+
+<p>To run the unit tests:</p>
+
+<ol>
+<li>
+<code>lineman run</code> from 1 terminal window</li>
+<li>
+<code>lineman spec</code> from another terminal window, this will launch Testem and execute specs in Chrome</li>
+</ol><h1>
+<a name="defining-your-apps-angularmodule-in-coffeescript" class="anchor" href="#defining-your-apps-angularmodule-in-coffeescript"><span class="octicon octicon-link"></span></a>Defining your apps angular.module in CoffeeScript</h1>
+
+<p>If you are using Coffeescript to define the angular.module for your app, you will need to swap the concat order in <code>config/application.js</code> such that coffeescript files are included <em>before</em> javascript, here's a sample config. (If you are using JavaScript for defining the angular.module the default concat order is fine).</p>
+
+<div class="highlight highlight-javascript"><pre><span class="nx">js</span><span class="o">:</span> <span class="p">{</span>
+  <span class="c1">// if using coffeescript and your angular.module is defined in a .coffee file, files.coffee.generated comes first</span>
+  <span class="nx">src</span><span class="o">:</span> <span class="p">[</span><span class="s2">"&lt;%= files.js.vendor %&gt;"</span><span class="p">,</span> <span class="s2">"&lt;%= files.coffee.generated %&gt;"</span><span class="p">,</span> <span class="s2">"&lt;%= files.js.app %&gt;"</span><span class="p">,</span> <span class="s2">"&lt;%= files.ngtemplates.dest %&gt;"</span><span class="p">],</span>
+  <span class="nx">dest</span><span class="o">:</span> <span class="s2">"&lt;%= files.js.concatenated %&gt;"</span>
+<span class="p">},</span>
+</pre></div>
+      </section>
+    </div>
+
+    <!-- FOOTER  -->
+    <div id="footer_wrap" class="outer">
+      <footer class="inner">
+        <p class="copyright">Story-client maintained by <a href="https://github.com/manuel-palacio">manuel-palacio</a></p>
+        <p>Published with <a href="http://pages.github.com">GitHub Pages</a></p>
+      </footer>
+    </div>
+
+    
+
+  </body>
+</html>
