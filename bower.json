@@ -1,7 +1,7 @@
 {
   "name": "TrelloLiteLineman",
   "version": "0.0.0",
-  "homepage": "https://github.com/davemo/lineman-angular-template",
+  "homepage": "https://github.com/manuel-palacio/story-client",
   "authors": [
     "Manuel Palacio <emanuel.palacio@gmail.com>"
   ],
@@ -15,6 +15,10 @@
     "tests"
   ],
   "dependencies": {
-    "bootstrap": "~3.0.2"
+    "bootstrap": "latest",
+    "angular": "latest",
+    "angular-resource": "latest",
+    "angular-route": "latest",
+    "underscore": "latest"
   }
 }

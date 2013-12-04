@@ -1,7 +1,7 @@
-# A Lineman JS Template using AngularJS
+# An AngularJS app that uses Lineman
 
 
-This is a project template for Angular JS applications using [Lineman](http://www.linemanjs.com).
+Can be used as a template for Angular JS applications using [Lineman](http://www.linemanjs.com).
 
 
 # Instructions
