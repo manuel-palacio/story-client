@@ -9,7 +9,7 @@
     </div>
     <div class="row">
         <div class="col-xs-6">
-            <div class="span3 story" ng-repeat="story in stories | TypeFilter | orderBy:'title'"
+            <div userstory class="span3 story" ng-repeat="story in stories | TypeFilter | orderBy:'title'"
                  ng-click="setCurrentStory(story)">
 
                 <button class="btn close storyClose" title="Delete Story"

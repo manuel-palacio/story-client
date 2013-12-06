@@ -12,26 +12,27 @@
  */
 
 module.exports = require(process.env['LINEMAN_MAIN']).config.extend('files', {
-  ngtemplates: {
-    dest: "generated/angular/template-cache.js"
-  },
+    ngtemplates: {
+        dest: "generated/angular/template-cache.js"
+    },
 
-  js: {
-    vendor: [
-      "vendor/js/angular.js",
-      "vendor/js/**/*.js"
-    ],
-    app: [
-      "app/js/app.js",
-      "app/js/**/*.js"
-    ]
-  },
+    js: {
+        vendor: [
+            "vendor/js/jquery.js",
+            "vendor/js/angular.js",
+            "vendor/js/**/*.js"
+        ],
+        app: [
+            "app/js/app.js",
+            "app/js/**/*.js"
+        ]
+    },
 
-  less: {
-    compile: {
-      options: {
-        paths: ["vendor/css/normalize.css", "vendor/css/**/*.css", "app/css/**/*.less"]
-      }
+    less: {
+        compile: {
+            options: {
+                paths: ["vendor/css/normalize.css", "vendor/css/**/*.css", "app/css/**/*.less"]
+            }
+        }
     }
-  }
 });
