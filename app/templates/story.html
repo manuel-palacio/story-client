@@ -1,6 +1,14 @@
 <div class="container">
     <div class="row">
         <div class="col-xs-6">
+            <h1>Stories</h1>
+        </div>
+        <div class="col-xs-6">
+            <h1>Story</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-6">
             <div class="span3 story" ng-repeat="story in stories | TypeFilter | orderBy:'title'"
                  ng-click="setCurrentStory(story)">
 
@@ -16,7 +24,9 @@
                 </div>
             </div>
 
-            <button class="btn btn-success" ng-click="createStory()">Create story</button>
+            <button class="btn btn-success" ng-click="createStory()">
+                <span class="glyphicon glyphicon-flash"></span>Create story
+            </button>
 
         </div>
         <div class="col-xs-6">

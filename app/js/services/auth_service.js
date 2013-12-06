@@ -13,7 +13,7 @@ angular.module('app').factory('AuthenticationService', function ($rootScope, $ht
 
     return {
         login: function (credentials) {
-
+            $rootScope.log("Logging in with " + credentials.username);
             return $http.post('/TrelloLiteGrails/auth/logIn', {
                 credentials: credentials
             }).success(success).error(error);
