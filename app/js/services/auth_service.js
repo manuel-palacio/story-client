@@ -1,6 +1,4 @@
-angular.module('app').factory('AuthenticationService', function ($rootScope, $http, $location, FlashService) {
-
-
+angular.module('app').factory('AuthenticationService', function ($http, $location, $rootScope, FlashService) {
     var success = function () {
         FlashService.show({type: "success", text: 'Authentication successful!'});
         $location.url('/story');
@@ -20,3 +18,5 @@ angular.module('app').factory('AuthenticationService', function ($rootScope, $ht
         }
     };
 });
+
+

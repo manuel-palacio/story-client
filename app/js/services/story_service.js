@@ -1,13 +1,11 @@
 angular.module('app').factory('StoryService', function ($resource, $rootScope, FlashService) {
-
-
     var getStories = function () {
         return $resource("/TrelloLiteGrails/resources/stories").query();
     };
 
     var saveStory = function (story) {
-        return $resource("/TrelloLiteGrails/resources/stories").save(story, function (resp) {
-            $rootScope.$broadcast("loadStories", "");
+        $resource("/TrelloLiteGrails/resources/stories").save(story, function (resp) {
+            $rootScope.$broadcast("storyChanged", "");
         }, function (error) {
             //handle error
         });
@@ -27,7 +25,7 @@ angular.module('app').factory('StoryService', function ($resource, $rootScope, F
 
     var deleteStory = function (id) {
         $resource("/TrelloLiteGrails/resources/stories/:storyId").delete({storyId: id}, function (resp) {
-            $rootScope.$broadcast("loadStories", "");
+            $rootScope.$broadcast("storyChanged", "");
         }, function (error) {
             //handle error
         });
@@ -48,10 +46,10 @@ angular.module('app').factory('StoryService', function ($resource, $rootScope, F
 
     var getTypes = function () {
         return [
-            {name: 'Feature', color:'success'},
-            {name: 'Enhancement', color:'info'},
-            {name: 'Bug', color:'danger'},
-            {name: 'Spike', color:'warning'}
+            {name: 'Feature', color: 'success'},
+            {name: 'Enhancement', color: 'info'},
+            {name: 'Bug', color: 'danger'},
+            {name: 'Spike', color: 'warning'}
         ];
     };
 
@@ -66,3 +64,5 @@ angular.module('app').factory('StoryService', function ($resource, $rootScope, F
         updateStory: updateStory
     };
 });
+
+

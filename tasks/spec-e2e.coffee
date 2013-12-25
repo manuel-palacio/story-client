@@ -1,9 +1,3 @@
-###
-Task: spec-e2e
-Description: run protractor (in a ci-like mode)
-Dependencies: grunt
-Contributor: @searls
-###
 module.exports = (grunt) ->
   path = require("path")
   spawn = require("child_process").spawn

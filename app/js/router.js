@@ -1,6 +1,5 @@
-var app = angular.module("app");
+angular.module("app").config(function ($routeProvider, $httpProvider) {
 
-app.config(function ($routeProvider) {
 
     var isLoggedIn = function ($q, $timeout, $http, $location, $rootScope, FlashService) {
         var deferred = $q.defer();
@@ -8,12 +7,10 @@ app.config(function ($routeProvider) {
         $http.get('/TrelloLiteGrails/auth/loggedIn').success(function (resp) {
             if (resp !== '0') {
                 $rootScope.loggedIn = true;
-                $timeout(deferred.resolve, 0);
+                deferred.resolve();
             } else {
                 FlashService.show({type: "warning", text: "You need to log in "});
-                $timeout(function () {
-                    deferred.reject();
-                }, 0);
+                deferred.reject();
                 $rootScope.loggedIn = false;
                 $location.url('/login');
             }
@@ -24,6 +21,29 @@ app.config(function ($routeProvider) {
 
         return deferred.promise;
     };
+
+    var logsOutUserOn401 = function ($rootScope, $location, $q, FlashService) {
+
+        var success = function (response) {
+            return response;
+        };
+
+        var error = function (response) {
+            if (response.status === 401) {
+                $rootScope.loggedIn = false;
+                $location.path('/login');
+                FlashService.show({type: 'danger', text: 'You have been logged out'});
+            }
+            return $q.reject(response);
+        };
+
+        return function (promise) {
+            return promise.then(success, error);
+        };
+    };
+
+    $httpProvider.responseInterceptors.push(logsOutUserOn401);
+
 
     $routeProvider
         .when('/story', {
@@ -41,43 +61,22 @@ app.config(function ($routeProvider) {
             redirectTo: '/story'
         });
 
-});
-
-app.config(function ($httpProvider) {
-
-
-    var logsOutUserOn401 = function ($rootScope, $location, $q, FlashService) {
-
-        var success = function (response) {
-            return response;
-        };
-
-        var error = function (response) {
-            if (response.status === 401) {
-                $rootScope.loggedIn = false;
-                $location.path('/login');
-                FlashService.show({type: 'error', text: 'You have been logged out'});
-            }
-            return $q.reject(response);
-        };
-
-        return function (promise) {
-            return promise.then(success, error);
-        };
-    };
-
-    $httpProvider.responseInterceptors.push(logsOutUserOn401);
-
-
 }).run(function ($rootScope, $http, FlashService) {
 
+
         $rootScope.logout = function () {
-            $rootScope.message = {type: "info", text: "You've been logged out"};
-            $rootScope.loggedIn = false;
             $http.post('/TrelloLiteGrails/auth/logout');
         };
 
         $rootScope.dismissMessage = function () {
             FlashService.clear();
+        };
+
+        $rootScope.log = function (thing) {
+            console.log(thing);
+        };
+
+        $rootScope.alert = function (thing) {
+            alert(thing);
         };
     });

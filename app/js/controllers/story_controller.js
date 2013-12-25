@@ -1,10 +1,20 @@
-angular.module('app').controller('StoryCtrl', function ($scope, StoryService) {
-
+angular.module('app').controller('StoryCtrl', function ($q, $scope, $modal, StoryService) {
 
     function init() {
-        $scope.stories = StoryService.getStories();
+        StoryService.getStories().$promise.then(
+            function (value) {
+                $scope.rows = chunk(value);
+            }
+        );
+
         $scope.statuses = StoryService.getStatuses();
         $scope.types = StoryService.getTypes();
+    }
+
+    function chunk(value) {
+        return _.chain(value).groupBy(function (element, index) {
+            return Math.floor(index / 3);
+        }).toArray().value();
     }
 
     init();
@@ -12,10 +22,19 @@ angular.module('app').controller('StoryCtrl', function ($scope, StoryService) {
     var statusesIndex = _.indexBy($scope.statuses, 'name');
     var typesIndex = _.indexBy($scope.types, 'name');
 
+    var modalPromise = $modal({template: 'story_edit.html', persist: true, show: false, backdrop: 'static', scope: $scope});
+
+
     $scope.setCurrentStory = function (story) {
         $scope.currentStory = story;
         $scope.currentType = typesIndex[story.type];
         $scope.currentStatus = statusesIndex[story.status];
+
+        $q.when(modalPromise).then(function (modalEl) {
+            modalEl.modal('show');
+        });
+
+
     };
 
     $scope.setCurrentStatus = function (status) {
@@ -30,10 +49,6 @@ angular.module('app').controller('StoryCtrl', function ($scope, StoryService) {
             $scope.currentStory.storyBackground = typesIndex[$scope.currentStory.type].color;
 
         }
-    };
-
-    $scope.deleteStory = function (id) {
-        StoryService.deleteStory(id);
     };
 
     $scope.updateStory = function () {
@@ -52,7 +67,11 @@ angular.module('app').controller('StoryCtrl', function ($scope, StoryService) {
         });
     };
 
-    $scope.$on('loadStories', function (event) {
-        $scope.stories = StoryService.getStories();
+    $scope.$on('storyChanged', function (event) {
+        StoryService.getStories().$promise.then(
+            function (value) {
+                $scope.rows = chunk(value);
+            }
+        );
     });
 });

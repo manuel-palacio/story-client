@@ -11,28 +11,30 @@
  * You can find the parent object in: node_modules/lineman/config/files.coffee
  */
 
-module.exports = require(process.env['LINEMAN_MAIN']).config.extend('files', {
-    ngtemplates: {
-        dest: "generated/angular/template-cache.js"
-    },
+module.exports = function (lineman) {
+    //Override file patterns here
+    return {
+        js: {
+            vendor: [
+                "vendor/js/jquery.js",
 
-    js: {
-        vendor: [
-            "vendor/js/jquery.js",
-            "vendor/js/angular.js",
-            "vendor/js/**/*.js"
-        ],
-        app: [
-            "app/js/app.js",
-            "app/js/**/*.js"
-        ]
-    },
+                "vendor/js/angular.js",
+                "vendor/js/bootstrap.js",
+                "vendor/js/angular-strap.js",
+                "vendor/js/**/*.js"
+            ],
+            app: [
+                "app/js/app.js",
+                "app/js/**/*.js"
+            ]
+        },
 
-    less: {
-        compile: {
-            options: {
-                paths: ["vendor/css/normalize.css", "vendor/css/**/*.css", "app/css/**/*.less"]
+        less: {
+            compile: {
+                options: {
+                    paths: ["vendor/css/normalize.css", "vendor/css/**/*.css", "app/css/**/*.less"]
+                }
             }
         }
-    }
-});
+    };
+};

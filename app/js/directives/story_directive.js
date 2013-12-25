@@ -1,4 +1,11 @@
 angular.module('app').directive('userstory', function () {
+
+    var controller = function ($scope, StoryService) {
+        $scope.deleteStory = function (id) {
+            StoryService.deleteStory(id);
+        };
+    };
+
     var linker = function (scope, element, attrs) {
 
         element.mouseover(function () {
@@ -6,14 +13,13 @@ angular.module('app').directive('userstory', function () {
         }).mouseout(function () {
                 element.css({ 'opacity': 1.0 });
             });
-
     };
-    var controller = function ($scope) {
 
-    };
     return {
         restrict: 'A',
         controller: controller,
         link: linker
     };
 });
+
+

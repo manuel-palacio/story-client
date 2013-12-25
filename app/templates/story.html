@@ -1,90 +1,26 @@
 <div class="container">
     <div class="row">
-        <div class="col-xs-6">
-            <h1>Stories</h1>
-        </div>
-        <div class="col-xs-6">
-            <h1>Story</h1>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-xs-6">
-            <div userstory class="span3 story" ng-repeat="story in stories | TypeFilter | orderBy:'title'"
-                 ng-click="setCurrentStory(story)">
-
-                <button class="btn close storyClose" title="Delete Story"
-                        ng-click="deleteStory(story.id)">&times;</button>
-                <div class="storyHeader alert-{{story.storyBackground}}">{{story.title}}</div>
-                <div class="storyBody">
-                    <div class="clearfix">
-                        <div class="pull-left storyBodyRight">
-                            <div>{{story.description}}</div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
+        <div class="col-md-12">
             <button class="btn btn-success" ng-click="createStory()">
                 <span class="glyphicon glyphicon-flash"></span>Create story
             </button>
-
-        </div>
-        <div class="col-xs-6">
-
-
-            <form role="form">
-                <fieldset ng-disabled="currentStory == null">
-                    <div class="form-group">
-                        <label for="inputTitle">Title</label>
-
-                        <input id="inputTitle" type="text" class="form-control" placeholder="Title"
-                               ng-model="currentStory.title">
-                    </div>
-                    <div class="form-group">
-                        <label for="status">Status</label>
-
-                        <select id="status" class="form-control"
-                                ng-model="currentStatus" ng-change="setCurrentStatus(currentStatus)"
-                                ng-options="s.name for s in statuses"></select>
-                    </div>
-                    <div class="form-group">
-                        <label for="type">Type</label>
-
-                        <select id="type" class="form-control"
-                                ng-model="currentType"
-                                ng-change="setCurrentType(currentType)"
-                                ng-options="s.name for s in types"></select>
-                    </div>
-                    <div class="form-group">
-                        <label for="criteria">Criteria</label>
-
-                        <input id="criteria" type="text" class="form-control" placeholder="Criteria"
-                               ng-model="currentStory.criteria">
-                    </div>
-                    <div class="form-group">
-                        <label for="reporter">Reporter</label>
-
-                        <input id="reporter" type="text" class="form-control" placeholder="Reporter"
-                               ng-model="currentStory.reporter">
-                    </div>
-                    <div class="form-group">
-                        <label for="assignee">Assignee</label>
-
-                        <input id="assignee" type="text" class="form-control" placeholder="Assignee"
-                               ng-model="currentStory.assigneed">
-                    </div>
-                    <div class="form-group">
-                        <label for="inputDescription">Description</label>
-
-                        <textarea id="inputDescription" class="form-control" placeholder="Description" rows="3"
-                                  ng-model="currentStory.description"> </textarea>
-                    </div>
-                    <button type="submit" class="btn btn-primary" ng-click="updateStory()">
-                        <span class="glyphicon glyphicon-flash"></span>Update story
-                    </button>
-                </fieldset>
-            </form>
         </div>
     </div>
-</div>
 
+    <div data-ng-repeat="row in rows" class="row">
+        <div userstory data-ng-repeat="story in row | TypeFilter | orderBy:'title'"
+             class="story col-xs-4" ng-click="setCurrentStory(story)">
+            <button class="btn close storyClose" title="Delete Story"
+                    ng-click="deleteStory(story.id)">&times;</button>
+            <div class="storyHeader alert-{{story.storyBackground}}">{{story.title}}</div>
+            <div class="storyBody">
+                <div class="clearfix">
+                    <div class="pull-left storyBodyRight">
+                        <div>{{story.description}}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

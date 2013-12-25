@@ -1,7 +1,9 @@
 # An AngularJS app that uses Lineman
 
 
-Can be used as a template for Angular JS applications using [Lineman](http://www.linemanjs.com).
+Small application showing the different parts of an AngularJS application: controllers, factories, directives, filters.
+Uses [Lineman](http://www.linemanjs.com) as a productivity tool.
+Can be used as a template for Angular JS applications.
 
 
 # Instructions
