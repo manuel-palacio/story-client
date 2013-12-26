@@ -1,6 +1,6 @@
 <div class="container">
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-lg-offset-2 col-md-12">
             <button class="btn btn-success" ng-click="createStory()">
                 <span class="glyphicon glyphicon-flash"></span>Create story
             </button>
@@ -8,11 +8,11 @@
     </div>
 
     <div data-ng-repeat="row in rows" class="row">
-        <div userstory data-ng-repeat="story in row | TypeFilter | orderBy:'title'"
-             class="story col-xs-4" ng-click="setCurrentStory(story)">
+        <div user-story data-ng-repeat="story in row | TypeFilter | orderBy:'title'"
+             class="story col-xs-4">
             <button class="btn close storyClose" title="Delete Story"
                     ng-click="deleteStory(story.id)">&times;</button>
-            <div class="storyHeader alert-{{story.storyBackground}}">{{story.title}}</div>
+            <div class="storyHeader alert-{{story.storyBackground}}" ng-click="setCurrentStory(story)">{{story.title}}</div>
             <div class="storyBody">
                 <div class="clearfix">
                     <div class="pull-left storyBodyRight">

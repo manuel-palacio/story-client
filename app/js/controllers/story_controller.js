@@ -21,7 +21,6 @@ angular.module('app').controller('StoryCtrl', function ($q, $scope, $modal, Stor
 
     var statusesIndex = _.indexBy($scope.statuses, 'name');
     var typesIndex = _.indexBy($scope.types, 'name');
-
     var modalPromise = $modal({template: 'story_edit.html', persist: true, show: false, backdrop: 'static', scope: $scope});
 
 

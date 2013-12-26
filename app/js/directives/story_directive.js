@@ -1,4 +1,4 @@
-angular.module('app').directive('userstory', function () {
+angular.module('app').directive('userStory', function () {
 
     var controller = function ($scope, StoryService) {
         $scope.deleteStory = function (id) {
