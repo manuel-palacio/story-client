@@ -1,11 +1,11 @@
 angular.module('app').factory('AuthenticationService', function ($http, $location, $rootScope, FlashService) {
     var success = function () {
-        FlashService.show({type: "success", text: 'Authentication successful!'});
+        FlashService.show({type: "success", content: 'Authentication successful!'});
         $location.url('/story');
     };
 
     var error = function () {
-        FlashService.show({type: "warning", text: 'Authentication failed.'});
+        FlashService.show({type: "warning", content: 'Authentication failed.'});
         $location.url('/login');
     };
 

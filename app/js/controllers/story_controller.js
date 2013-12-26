@@ -1,4 +1,4 @@
-angular.module('app').controller('StoryCtrl', function ($q, $scope, $modal, StoryService) {
+angular.module('app').controller('StoryCtrl', function ($q, $scope, $modal, $rootScope, StoryService) {
 
     function init() {
         StoryService.getStories().$promise.then(
@@ -13,7 +13,7 @@ angular.module('app').controller('StoryCtrl', function ($q, $scope, $modal, Stor
 
     function chunk(value) {
         return _.chain(value).groupBy(function (element, index) {
-            return Math.floor(index / 3);
+            return Math.floor(index / 4);
         }).toArray().value();
     }
 
@@ -54,7 +54,7 @@ angular.module('app').controller('StoryCtrl', function ($q, $scope, $modal, Stor
         StoryService.updateStory($scope.currentStory);
     };
 
-    $scope.createStory = function () {
+    $rootScope.createStory = function () {
         StoryService.saveStory({
             title: 'New Story',
             description: 'Description pending.',

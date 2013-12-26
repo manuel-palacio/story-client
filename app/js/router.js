@@ -9,13 +9,13 @@ angular.module("app").config(function ($routeProvider, $httpProvider) {
                 $rootScope.loggedIn = true;
                 deferred.resolve();
             } else {
-                FlashService.show({type: "warning", text: "You need to log in "});
+                FlashService.show({type: "warning", content: "You need to log in "});
                 deferred.reject();
                 $rootScope.loggedIn = false;
                 $location.url('/login');
             }
         }).error(function (resp) {
-                FlashService.show({type: "error", text: "Could not connect to the server to authenticate the user " + resp.data});
+                FlashService.show({type: "error", content: "Could not connect to the server to authenticate the user " + resp.data});
 
             });
 
@@ -32,7 +32,7 @@ angular.module("app").config(function ($routeProvider, $httpProvider) {
             if (response.status === 401) {
                 $rootScope.loggedIn = false;
                 $location.path('/login');
-                FlashService.show({type: 'danger', text: 'You have been logged out'});
+                FlashService.show({type: 'danger', content: 'You have been logged out'});
             }
             return $q.reject(response);
         };
@@ -61,15 +61,11 @@ angular.module("app").config(function ($routeProvider, $httpProvider) {
             redirectTo: '/story'
         });
 
-}).run(function ($rootScope, $http, FlashService) {
+}).run(function ($rootScope, $http) {
 
 
         $rootScope.logout = function () {
             $http.post('/TrelloLiteGrails/auth/logout');
-        };
-
-        $rootScope.dismissMessage = function () {
-            FlashService.clear();
         };
 
         $rootScope.log = function (thing) {

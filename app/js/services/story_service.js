@@ -17,7 +17,7 @@ angular.module('app').factory('StoryService', function ($resource, $rootScope, F
         });
 
         Story.update(story, function (resp) {
-            FlashService.show({type: "success", text: "Story updated"});
+            FlashService.show({type: "success", content: "Story updated"});
         }, function (error) {
             //handle error
         });
