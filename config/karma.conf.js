@@ -5,7 +5,7 @@ module.exports = function (config) {
     config.set({
 
         // base path, that will be used to resolve files and exclude
-        basePath: '',
+        basePath: '../),
 
 
         // frameworks to use
@@ -15,7 +15,7 @@ module.exports = function (config) {
         // list of files / patterns to load in the browser
         files: [
 
-            'vendor/js/angular.js',
+            '../vendor/js/angular.js',
             'vendor/js/angular-*.js',
             'vendor/js/underscore.js',
             'app/js/**/*.js',
