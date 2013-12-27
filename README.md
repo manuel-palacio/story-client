@@ -1,14 +1,17 @@
 # An AngularJS app that uses Lineman
 
 
-Small application showing the different parts of an AngularJS application: controllers, factories, directives, filters.
-Uses [Lineman](http://www.linemanjs.com) as a productivity tool.
-Can be used as a template for Angular JS applications.
+Small first citizen web application showing the different parts of an AngularJS application: controllers, factories, directives, filters.
+It also shows how to do simple authentication and illustrates the use of a REST backend
+Uses [Lineman](http://www.linemanjs.com) as a productivity tool, totally decoupling the front and backend parts.
+
+Note: the repository story-backend is a Grails Rest app that needs to be run together with the client. It relies on mongodb so you need to have it installed.
+
 
 
 # Instructions
 
-1. `git clone https://github.com/manuel-palacio/lineman-angular-template`
+1. `git clone https://github.com/manuel-palacio/story-client`
 2. `cd my-lineman-app`
 3. `sudo npm install -g lineman`
 4. `npm install`
