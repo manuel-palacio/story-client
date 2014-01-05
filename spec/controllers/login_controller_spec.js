@@ -22,7 +22,7 @@ describe("controller: LoginController ($httpBackend.expect().respond, vanilla ja
 
     describe("successfully logging in", function () {
         it("should redirect you to /story", function () {
-            this.$httpBackend.expectPOST('/TrelloLiteGrails/auth/logIn', {credentials: {username: "", password: ""}}).respond(200);
+            this.$httpBackend.expectPOST('/story-backend/auth/logIn', {credentials: {username: "", password: ""}}).respond(200);
             this.scope.login();
             this.$httpBackend.flush();
             expect(this.redirect).toHaveBeenCalledWith('/story');
@@ -31,7 +31,7 @@ describe("controller: LoginController ($httpBackend.expect().respond, vanilla ja
 
     describe("could not log in", function () {
         it("should redirect you to /login", function () {
-            this.$httpBackend.expectPOST('/TrelloLiteGrails/auth/logIn', {credentials: {username: "", password: ""}}).respond(401);
+            this.$httpBackend.expectPOST('/story-backend/auth/logIn', {credentials: {username: "", password: ""}}).respond(401);
             this.scope.login();
             this.$httpBackend.flush();
             expect(this.redirect).toHaveBeenCalledWith('/login');
