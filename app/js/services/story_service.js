@@ -1,10 +1,10 @@
 angular.module('app').factory('StoryService', function ($resource, $rootScope, FlashService) {
     var getStories = function () {
-        return $resource("/TrelloLiteGrails/resources/stories").query();
+        return $resource("/story-backend/resources/stories").query();
     };
 
     var saveStory = function (story) {
-        $resource("/TrelloLiteGrails/resources/stories").save(story, function (resp) {
+        $resource("/story-backend/resources/stories").save(story, function (resp) {
             $rootScope.$broadcast("storyChanged", "");
         }, function (error) {
             //handle error
@@ -12,7 +12,7 @@ angular.module('app').factory('StoryService', function ($resource, $rootScope, F
     };
 
     var updateStory = function (story) {
-        var Story = $resource('/TrelloLiteGrails/resources/stories/:id', { id: story.id }, {
+        var Story = $resource('/story-backend/resources/stories/:id', { id: story.id }, {
             update: { method: 'PUT' }
         });
 
@@ -24,7 +24,7 @@ angular.module('app').factory('StoryService', function ($resource, $rootScope, F
     };
 
     var deleteStory = function (id) {
-        $resource("/TrelloLiteGrails/resources/stories/:storyId").delete({storyId: id}, function (resp) {
+        $resource("/story-backend/resources/stories/:storyId").delete({storyId: id}, function (resp) {
             $rootScope.$broadcast("storyChanged", "");
         }, function (error) {
             //handle error
