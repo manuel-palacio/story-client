@@ -4,7 +4,7 @@ angular.module("app").config(function ($routeProvider, $httpProvider) {
     var isLoggedIn = function ($q, $timeout, $http, $location, $rootScope, FlashService) {
         var deferred = $q.defer();
 
-        $http.get('/story-backend/auth/loggedIn').success(function (resp) {
+        $http.get('/auth/loggedIn').success(function (resp) {
             if (resp !== '0') {
                 $rootScope.loggedIn = true;
                 deferred.resolve();
@@ -65,7 +65,7 @@ angular.module("app").config(function ($routeProvider, $httpProvider) {
 
 
         $rootScope.logout = function () {
-            $http.post('/story-backend/auth/logout');
+            $http.post('/auth/logout');
         };
 
         $rootScope.log = function (thing) {

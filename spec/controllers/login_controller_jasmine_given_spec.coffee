@@ -12,7 +12,7 @@ describe "controller: LoginController ($httpBackend.when().respond, jasmine-give
     @$httpBackend.verifyNoOutstandingExpectation()
 
   describe "when a user successfully logs in", ->
-    Given -> @$httpBackend.whenPOST('/story-backend/auth/logIn', {credentials: {username: "", password: ""}}).respond(200)
+    Given -> @$httpBackend.whenPOST('/auth/logIn', {credentials: {username: "", password: ""}}).respond(200)
     When  -> @scope.login()
     When  -> @$httpBackend.flush()
     Then "LoginController should redirect you to /home", ->

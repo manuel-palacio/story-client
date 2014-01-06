@@ -12,7 +12,7 @@ angular.module('app').factory('AuthenticationService', function ($http, $locatio
     return {
         login: function (credentials) {
             $rootScope.log("Logging in with " + credentials.username);
-            return $http.post('/story-backend/auth/logIn', {
+            return $http.post('/auth/logIn', {
                 credentials: credentials
             }).success(success).error(error);
         }
