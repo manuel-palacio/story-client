@@ -1,14 +1,14 @@
 angular.module('app').controller('StoryCtrl', function ($q, $scope, $modal, $rootScope, StoryService) {
 
     function init() {
-        StoryService.getStories().$promise.then(
+        StoryService.getStories().then(
             function (value) {
                 $scope.rows = chunk(value);
             }
         );
 
         $scope.statuses = StoryService.getStatuses();
-        $scope.types = StoryService.getTypes();
+        $scope.types = StoryService.getTypesAndColors();
     }
 
     function chunk(value) {
@@ -21,7 +21,7 @@ angular.module('app').controller('StoryCtrl', function ($q, $scope, $modal, $roo
 
     var statusesIndex = _.indexBy($scope.statuses, 'name');
     var typesIndex = _.indexBy($scope.types, 'name');
-    var modalPromise = $modal({template: 'story_edit.html', persist: true, show: false, backdrop: 'static', scope: $scope});
+    var editDialog = $modal({template: 'story_edit.html', persist: true, show: false, backdrop: 'static', scope: $scope});
 
 
     $scope.setCurrentStory = function (story) {
@@ -29,11 +29,9 @@ angular.module('app').controller('StoryCtrl', function ($q, $scope, $modal, $roo
         $scope.currentType = typesIndex[story.type];
         $scope.currentStatus = statusesIndex[story.status];
 
-        $q.when(modalPromise).then(function (modalEl) {
+        $q.when(editDialog).then(function (modalEl) {
             modalEl.modal('show');
         });
-
-
     };
 
     $scope.setCurrentStatus = function (status) {
@@ -46,7 +44,6 @@ angular.module('app').controller('StoryCtrl', function ($q, $scope, $modal, $roo
         if (typeof $scope.currentStory !== 'undefined') {
             $scope.currentStory.type = type.name;
             $scope.currentStory.storyBackground = typesIndex[$scope.currentStory.type].color;
-
         }
     };
 
@@ -67,7 +64,7 @@ angular.module('app').controller('StoryCtrl', function ($q, $scope, $modal, $roo
     };
 
     $scope.$on('storyChanged', function (event) {
-        StoryService.getStories().$promise.then(
+        StoryService.getStories().then(
             function (value) {
                 $scope.rows = chunk(value);
             }

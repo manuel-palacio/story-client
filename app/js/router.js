@@ -32,7 +32,7 @@ angular.module("app").config(function ($routeProvider, $httpProvider) {
             if (response.status === 401) {
                 $rootScope.loggedIn = false;
                 $location.path('/login');
-                FlashService.show({type: 'danger', content: 'You have been logged out'});
+                FlashService.show({type: 'danger', content: 'You need to log in'});
             }
             return $q.reject(response);
         };

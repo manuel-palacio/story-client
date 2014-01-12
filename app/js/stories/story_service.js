@@ -1,6 +1,12 @@
-angular.module('app').factory('StoryService', function ($resource, $rootScope, FlashService) {
+angular.module('app').factory('StoryService', function ($resource, $q, $http, $rootScope, FlashService) {
+
     var getStories = function () {
-        return $resource("/resources/stories").query();
+        var d = $q.defer();
+        $http.get("/resources/stories").success(function(result){
+            d.resolve(result);
+        });
+
+        return d.promise;
     };
 
     var saveStory = function (story) {
@@ -44,7 +50,7 @@ angular.module('app').factory('StoryService', function ($resource, $rootScope, F
     };
 
 
-    var getTypes = function () {
+    var getTypesAndColors = function () {
         return [
             {name: 'Feature', color: 'success'},
             {name: 'Enhancement', color: 'info'},
@@ -58,7 +64,7 @@ angular.module('app').factory('StoryService', function ($resource, $rootScope, F
     return {
         getStatuses: getStatuses,
         getStories: getStories,
-        getTypes: getTypes,
+        getTypesAndColors: getTypesAndColors,
         saveStory: saveStory,
         deleteStory: deleteStory,
         updateStory: updateStory
