@@ -3,18 +3,12 @@ angular.module('app').controller('StoryCtrl', function ($q, $scope, $modal, $roo
     function init() {
         StoryService.getStories().then(
             function (value) {
-                $scope.rows = chunk(value);
+                $scope.rows = value;
             }
         );
 
         $scope.statuses = StoryService.getStatuses();
         $scope.types = StoryService.getTypesAndColors();
-    }
-
-    function chunk(value) {
-        return _.chain(value).groupBy(function (element, index) {
-            return Math.floor(index / 4);
-        }).toArray().value();
     }
 
     init();
@@ -66,7 +60,7 @@ angular.module('app').controller('StoryCtrl', function ($q, $scope, $modal, $roo
     $scope.$on('storyChanged', function (event) {
         StoryService.getStories().then(
             function (value) {
-                $scope.rows = chunk(value);
+                $scope.rows = value;
             }
         );
     });

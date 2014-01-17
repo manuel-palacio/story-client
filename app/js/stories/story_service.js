@@ -2,12 +2,20 @@ angular.module('app').factory('StoryService', function ($resource, $q, $http, $r
 
     var getStories = function () {
         var d = $q.defer();
-        $http.get("/resources/stories").success(function(result){
-            d.resolve(result);
+        $http.get("/resources/stories").success(function (result) {
+            d.resolve(chunk(result));
         });
 
         return d.promise;
     };
+
+
+    function chunk(value) {
+        return _.chain(value).groupBy(function (element, index) {
+            return Math.floor(index / 4);
+        }).toArray().value();
+    }
+
 
     var saveStory = function (story) {
         $resource("/resources/stories").save(story, function (resp) {
