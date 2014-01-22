@@ -43,4 +43,4 @@ angular.module('app').controller 'StoryCtrl', ($q, $scope, $modal, $rootScope, S
             assignee: 'Pending'
         });
 
-    $scope.$on 'storyChanged',  () -> StoryService.getStories().then (value) -> $scope.rows = value
+    $scope.$on 'storyChanged',  -> StoryService.getStories().then (value) -> $scope.rows = value

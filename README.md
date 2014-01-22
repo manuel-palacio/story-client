@@ -1,7 +1,7 @@
 # An AngularJS app that uses Lineman
 
 
-Small first citizen web application showing the different parts of an AngularJS application: controllers, factories, directives, filters.
+Small first citizen web application showing the different parts of an AngularJS application: controllers, factories, directives, filters using Coffeescript
 It also shows how to do simple authentication and illustrates the use of a REST backend
 Uses [Lineman](http://www.linemanjs.com) as a productivity tool, totally decoupling the front and backend parts.
 
