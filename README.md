@@ -1,5 +1,8 @@
 # An AngularJS app that uses Lineman
 
+[![Build Status](https://palace.ci.cloudbees.com/buildStatus/icon?job=StoryFrontend)](https://palace.ci.cloudbees.com/job/StoryFrontend/)
+
+
 
 Small first citizen web application showing the different parts of an AngularJS application: controllers, factories, directives, filters using Coffeescript
 It also shows how to do simple authentication and illustrates the use of a REST backend
