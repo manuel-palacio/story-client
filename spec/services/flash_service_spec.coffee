@@ -1,5 +1,4 @@
 describe "service: FlashService", ->
-
   Given ->
     module("app")
 
