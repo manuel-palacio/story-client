@@ -2,8 +2,9 @@ describe "controller: LoginController ($httpBackend.when().respond, jasmine-give
   Given ->
     module("app")
 
-  Given inject ($controller, $rootScope, $location, AuthenticationService, @$httpBackend) ->
+  Given inject ($controller, $rootScope, $location, AuthenticationService, $httpBackend) ->
     @scope = $rootScope.$new()
+    @$httpBackend = $httpBackend
     @redirect = spyOn($location, 'path')
     $controller('LoginCtrl', {$scope: @scope, $location, AuthenticationService})
 
