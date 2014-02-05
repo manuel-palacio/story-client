@@ -1,14 +1,12 @@
 angular.module('app').controller 'StoryCtrl', ($q, $scope, $modal, $rootScope, StoryService) ->
 
-    init = ->
-        StoryService.getStories().then (value) -> $scope.rows = value
-        $scope.statuses = StoryService.getStatuses()
-        $scope.types = StoryService.getTypesAndColors()
 
-    init()
+    StoryService.getStories().then (result) -> $scope.stories = result
+    $scope.statuses = StoryService.getStatuses()
+    $scope.types = StoryService.getTypesAndColors()
 
-    statusesIndex = _.indexBy($scope.statuses, 'name');
-    typesIndex = _.indexBy($scope.types, 'name');
+    statusesIndex = _.indexBy($scope.statuses, 'name')
+    typesIndex = _.indexBy($scope.types, 'name')
     editDialog = $modal({template: 'story_edit.html', persist: true, show: false, backdrop: 'static', scope: $scope})
 
 
@@ -17,7 +15,9 @@ angular.module('app').controller 'StoryCtrl', ($q, $scope, $modal, $rootScope, S
         $scope.currentType = typesIndex[story.type]
         $scope.currentStatus = statusesIndex[story.status]
 
-        $q.when(editDialog).then (modalEl) -> modalEl.modal('show')
+
+    $scope.editStory = ->
+      $q.when(editDialog).then (modalEl) -> modalEl.modal('show')
 
 
     $scope.setCurrentStatus =  (status) ->
@@ -29,8 +29,7 @@ angular.module('app').controller 'StoryCtrl', ($q, $scope, $modal, $rootScope, S
             $scope.currentStory.type = type.name;
             $scope.currentStory.storyBackground = typesIndex[$scope.currentStory.type].color
 
-    $scope.updateStory =  ->
-        StoryService.updateStory($scope.currentStory)
+    $scope.updateStory =  -> StoryService.updateStory($scope.currentStory)
 
     $rootScope.createStory = ->
         StoryService.saveStory({
@@ -43,4 +42,4 @@ angular.module('app').controller 'StoryCtrl', ($q, $scope, $modal, $rootScope, S
             assignee: 'Pending'
         });
 
-    $scope.$on 'storyChanged',  -> StoryService.getStories().then (value) -> $scope.rows = value
+    $scope.$on 'storyChanged',  -> StoryService.getStories().then (value) -> $scope.stories = value

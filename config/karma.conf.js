@@ -4,6 +4,7 @@
 module.exports = function (config) {
     config.set({
 
+
         // base path, that will be used to resolve files and exclude
         basePath: '',
 
@@ -18,12 +19,14 @@ module.exports = function (config) {
             '../vendor/js/angular.js',
             '../vendor/js/angular-*.js',
             '../vendor/js/underscore.js',
-            '../app/js/**/*.js',
-            '../spec/helpers/*.js',
+            '../app/js/**/*.coffee',
             '../spec/services/*.js',
-            '../spec/directives/*.js',
-            '../spec/controllers/*.js'
+            '../spec/controllers/*.coffee'
         ],
+
+        preprocessors: {
+            '**/*.coffee': ['coffee']
+        },
 
 
         // list of files to exclude

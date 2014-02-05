@@ -1,10 +1,10 @@
 <div class="container">
-    <div data-ng-repeat="row in rows" class="row">
-        <div user-story data-ng-repeat="story in row | TypeFilter | orderBy:'title'"
-             class="story col-md-3">
-            <button class="btn close storyClose" title="Delete Story"
-                    ng-click="deleteStory(story.id)">&times;</button>
-            <div class="storyHeader alert-{{story.storyBackground}}" ng-click="setCurrentStory(story)">{{story.title}}</div>
+    <!-- <div data-ng-repeat="row in rows" class="row">
+         <div user-story data-ng-repeat="story in row | TypeFilter | orderBy:'title'"
+              class="story col-md-3">
+             <button class="btn close storyClose" title="Delete Story"
+                     ng-click="deleteStory(story.id)">&times;</button>
+            <div class="storyHeader alert-{{story.storyBackgroundColor}}" ng-click="setCurrentStory(story)">{{story.title}}</div>
             <div class="storyBody">
                 <div class="clearfix">
                     <div class="pull-left storyBodyRight">
@@ -13,6 +13,23 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div>-->
+
+    <ul sortable class="list" ng-repeat="status in statuses">
+        <h3>{{status.name}}</h3>
+        <hr/>
+        <li hoverable ng-repeat="story in stories | filter:{status:status.name}" class="story"
+            ng-click="setCurrentStory(story)">
+            <article class="{{story.type}}">
+                <div class="modal-header">
+                    <button type="button" class="close" ng-click="deleteStory(story.id)">&times;</button>
+                    <h3 ng-click="editStory()">{{story.title}}</h3>
+                </div>
+                <div class="modal-body">
+                    <p>{{story.description}}</p>
+                </div>
+            </article>
+        </li>
+    </ul>
 
 </div>
