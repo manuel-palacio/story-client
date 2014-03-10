@@ -1,5 +1,4 @@
-angular.module('app').factory 'StoryService', ($q, $http, $rootScope, FlashService) ->
-
+angular.module('app').factory 'StoryService', ($q, $http, $rootScope, $resource, FlashService) ->
   class StoryService
 
     getStories: ->
@@ -10,11 +9,13 @@ angular.module('app').factory 'StoryService', ($q, $http, $rootScope, FlashServi
 
 
     saveStory: (story) ->
-      $http.post("/resources/stories", story).success((result) -> $rootScope.$broadcast("storyChanged", ""))
+      $http.post("/resources/stories", story).success((result) ->
+        $rootScope.$broadcast("storyChanged", ""))
 
 
     updateStory: (story) ->
-      $http.put("/resources/stories/#{story.id}", story).success((result) -> FlashService.show({type: "success", content: "Story updated"}))
+      $http.put("/resources/stories/#{story.id}", story).success((result) ->
+        FlashService.show({type: "success", content: "Story updated"}))
 
 
     deleteStory: (id) ->
