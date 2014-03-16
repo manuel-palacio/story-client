@@ -1,5 +1,4 @@
 angular.module('app').directive 'hoverable', ->
-
   linker = (scope, element, attrs) ->
     element.mouseover(->
       element.css({ 'opacity': 0.7 }))

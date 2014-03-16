@@ -19,7 +19,8 @@ angular.module('app').factory 'StoryService', ($q, $http, $rootScope, $resource,
 
 
     deleteStory: (id) ->
-      $http.delete("/resources/stories/#{id}").success((result) -> $rootScope.$broadcast("storyChanged", ""))
+      $http.delete("/resources/stories/#{id}").success((result) ->
+        $rootScope.$broadcast("storyChanged", ""))
 
 
     getStatuses: ->

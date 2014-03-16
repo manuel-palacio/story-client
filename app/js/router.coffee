@@ -50,6 +50,13 @@ angular.module("app").config  ($routeProvider, $httpProvider) ->
             templateUrl: 'login.html',
             controller: 'LoginCtrl'
         })
+        .when('/dashboard', {
+            templateUrl: 'dashboard.html',
+            controller: 'DashboardCtrl',
+            resolve: {
+                loggedIn: isLoggedIn
+            }
+        })
         .otherwise({
             redirectTo: '/story'
         })

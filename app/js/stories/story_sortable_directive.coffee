@@ -1,7 +1,7 @@
 angular.module('app').directive 'sortable', (StoryService) ->
 
   linker = (scope, element, attrs) ->
-          status = scope.status.name;
+          status = scope.status.name
           element.sortable({
               items: 'li',
               connectWith: ".list",

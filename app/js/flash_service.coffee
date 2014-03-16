@@ -1,5 +1,4 @@
 angular.module('app').factory 'FlashService', ($rootScope) ->
-
   class FlashService
     constructor: ->
       $rootScope.alert = null
